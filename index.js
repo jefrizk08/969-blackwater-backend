@@ -17,4 +17,11 @@ app.get("/donations", (req, res) => {
     ])
 })
 
+app.post("/sociabuzz", (req, res) => {
+    console.log("Webhook dari Sociabuzz masuk")
+    console.log(req.body)
+
+    res.status(200).json({ success: true })
+})
+
 module.exports = app
