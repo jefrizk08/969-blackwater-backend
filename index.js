@@ -17,6 +17,4 @@ app.get("/donations", (req, res) => {
     ])
 })
 
-app.listen(3000, () => {
-    console.log("Backend jalan di http://localhost:3000")
-})
+module.exports = app
