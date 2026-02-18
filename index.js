@@ -11,17 +11,22 @@ app.get("/", (req, res) => {
 })
 
 app.get("/donations", (req, res) => {
-    res.json([
-        { username: "Jefri", amount: 969 },
-        { username: "BlackWater", amount: 1500 }
-    ])
+    res.json(global.donations || [])
 })
 
 app.post("/sociabuzz", (req, res) => {
-    console.log("Webhook dari Sociabuzz masuk")
-    console.log(req.body)
+    const data = req.body
 
-    res.status(200).json({ success: true })
+    if (!global.donations) global.donations = []
+
+    global.donations.push({
+        username: data.name,
+        amount: data.amount
+    })
+
+    console.log("Donasi masuk:", data)
+
+    res.json({ success: true })
 })
 
 module.exports = app
